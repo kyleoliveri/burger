@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-8">
+
+
+        <main>
+            <div class="container">
+                <div class="row">
+                    <!-- Column for available burgers and customer name -->
+                    <div class="col s8 card">
+                        {{#each burgers}}
+                        {{#unless this.devoured}}
+                        <div class="row">
+                            <div class="burgerName">
+                                <div class='burgerAvailable'>{{this.burger_name}}</div>
+                            </div>
+
+                            <div class="customerEats">
+                                <button type="submit" class="eatBurgerButton" id="{{this.id}}"><i
+                                        class="fas fa-hamburger"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                        {{/unless}}
+                        {{/each}}
+                    </div> <!-- End col s8 -->
+
+                    <!-- Column for burgers that are no longer available -->
+                    <div class="col s4 card">
+                        {{#each burgers}}
+                        {{#if this.devoured}}
+                        <div class='burgerEaten'>
+                            <div>
+                                {{this.burger_name}}
+                                <button type="submit" class="burgerPurge" id="{{this.id}}">Barf</button>
+
+                            </div>
+                        </div>
+                        {{/if}}
+                        {{/each}}
+                    </div> <!-- End col s4 -->
+                </div> <!-- End row -->
+            </div> <!-- End container -->
+        </main>
+
+        <panel>
+            <form class="create-form">
+                <div class="form-group">
+                    <label for="newburger" id="color-override">New Burger:</label>
+                    <input type="text" id="newBurger" name="burger">
+
+                    {{!-- Create a button in index.handlebars that will submit the user input into the database. --}}
+                    <button type="submit" name="submit" class="btn btn-primary create-form"
+                        id="addburger">Submit</button>
+                </div>
+            </form>
+        </panel>
+
+        <a href="/api/burgers" class="btn btn-light mt-4">Visit API</a>
+    </div>
+</div>
+</div>

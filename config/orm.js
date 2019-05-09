@@ -48,6 +48,7 @@ var orm = {
         queryString += ") ";
         queryString += "VALUES (";
         queryString += printQuestionMarks(vals.length);
+        queryString += ") ";
 
         console.log(queryString);
 
@@ -76,7 +77,21 @@ var orm = {
 
             cb(result);
         });
-    }
+    },
+
+    delete: function(table, condition, cb) {
+        var queryString = "DELETE FROM " + table;
+        queryString += " WHERE ";
+        queryString += condition;
+    
+        connection.query(queryString, function(err, result) {
+          if (err) {
+            throw err;
+          }
+    
+          cb(result);
+        });
+      }
 };
 
 module.exports = orm;
